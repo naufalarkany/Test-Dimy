@@ -42,3 +42,33 @@ exports.findAll = async () =>
             })
             .catch(reject);
     });
+
+exports.findOne = async (id) =>
+    new Promise((resolve, reject) => {
+        Model.findOne({
+            include: [
+                {
+                    model: Customer,
+                },
+                {
+                    model: OrderProduct,
+                    include: {
+                        model: Product,
+                    },
+                },
+                {
+                    model: OrderPayment,
+                    include: {
+                        model: PaymentMethod,
+                    },
+                },
+            ],
+            where: {
+                id: id,
+            },
+        })
+            .then((data) => {
+                resolve(data ? data : null);
+            })
+            .catch(reject);
+    });
