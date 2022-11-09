@@ -29,7 +29,7 @@ module.exports = async (req, res) => {
         await repositoryOrderProduct.create(newOrderProduct);
         res.status(200).send({
             status: "success",
-            msg: "Get All Payments Method Success",
+            msg: "Successfully created order",
             data: null,
         });
     } catch (error) {
